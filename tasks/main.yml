@@ -1,6 +1,6 @@
 ---
 - name: Include OS-specific variables.
-  include_vars: "{{lookup('first_found', params, errors='ignore')}}"
+  include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
       files:
