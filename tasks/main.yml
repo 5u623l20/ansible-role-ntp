@@ -9,7 +9,7 @@
         - '{{ ansible_os_family }}.yml'
       path:
         - 'vars'
-      skip: yes
+      errors: ignore
   tags: vars
 
 - name: Update cache and install related packages for Debian based systems
