@@ -1,0 +1,71 @@
+---
+- name: Include OS-specific variables.
+  include_vars: '{{ item }}'
+  vars:
+    params:
+      files:
+        - '{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml'
+        - '{{ ansible_distribution }}.yml'
+        - '{{ ansible_os_family }}.yml'
+      path:
+        - 'vars'
+  loop: "{{ q('first_found', params, errors='ignore') }}"
+  tags: vars
+
+- name: Update cache and install related packages for Debian based systems
+  apt:
+    name:
+      - "{{ ntp_package }}"
+      - "{{ ntp_tzdata_package }}"
+    update_cache: yes
+    state: present
+  when: ansible_os_family == "Debian"
+
+- name: Make sure ntp and chrony is not in conflict in CentOS like systems
+  yum:
+    name:
+      - ntp
+    state: absent
+  when: ansible_os_family == "RedHat"
+
+- name: Update cache and install related packages for CentOS based systems
+  yum:
+    name:
+      - "{{ ntp_package }}"
+      - "{{ ntp_tzdata_package }}"
+    state: present
+  when: ansible_os_family == "RedHat"
+
+- name: Set timezone in Linux like OS
+  timezone:
+    name: "{{ ntp_timezone }}"
+
+- name: Ensure NTP is running and enabled as configured.
+  service:
+    name: "{{ ntp_daemon }}"
+    state: started
+    enabled: true
+  when: ntp_enabled | bool
+
+- name: Ensure NTP is stopped and disabled as configured.
+  service:
+    name: "{{ ntp_daemon }}"
+    state: stopped
+    enabled: false
+  when: not (ntp_enabled | bool)
+
+- name: Generate configuration file
+  template:
+    src: "{{ lookup('first_found', params) }}"
+    dest: "/etc/{{ ntp_package }}.conf"
+  vars:
+    params:
+      files:
+        - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.{{ ntp_package }}.conf.j2"
+        - "{{ ansible_distribution }}.{{ ntp_package }}.conf.j2"
+        - "{{ ansible_os_family }}.{{ ntp_package }}.conf.j2"
+        - "{{ ntp_package }}.conf.j2"
+      paths:
+        - 'templates'
+  tags: template-ntp-config
+  notify: restart ntp
