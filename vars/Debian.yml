@@ -1,5 +1,0 @@
----
-ntp_daemon: ntp
-ntp_package: ntp
-drift_file: /var/lib/ntp/ntp.drift
-leap_file: /usr/share/zoneinfo/leap-seconds.list
