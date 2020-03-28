@@ -1,6 +1,6 @@
 ---
 - name: Include OS-specific variables.
-  include_vars: '{{ item }}'
+  include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
       files:
@@ -9,7 +9,8 @@
         - '{{ ansible_os_family }}.yml'
       path:
         - 'vars'
-  loop: "{{ q('first_found', params, errors='ignore') }}"
+      skip:
+        - yes
   tags: vars
 
 - name: Update cache and install related packages for Debian based systems
