@@ -1,11 +1,5 @@
 ---
 ntp_daemon: ntp
-ntp_enabled: true
 ntp_package: ntp
-ntp_pools: []
-ntp_restrict: []
-ntp_servers: []
-ntp_timezone: Etc/UTC
-ntp_tzdata_package: tzdata
 drift_file: /var/lib/ntp/ntp.drift
 leap_file: /usr/share/zoneinfo/leap-seconds.list
