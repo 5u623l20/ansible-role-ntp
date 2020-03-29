@@ -50,28 +50,10 @@ ntp_restrict: []
 By default only `127.0.0.1` and `::1` is allowed to query the host. If any local network needs to be allowed it should be added in CIDR format(e.g `192.168.0.0/24`).
 
 ```yaml
-ntp_daemon: ntp
-```
-
-NTP daemon used to start/stop the service. Nothing to configure.
-
-```yaml
 ntp_tzdata_package: tzdata
 ```
 
 Package to provide updated time definitions.
-
-```yaml
-drift_file: /var/lib/ntp/ntp.drift
-```
-
-NTP drift file location used in configuration file.
-
-```yaml
-leap_file: /usr/share/zoneinfo/leap-seconds.list
-```
-
-NTP leap-seconds file location. Nothing to configure.
 
 # Dependencies
 
@@ -97,6 +79,3 @@ BSD-3-CLAUSE
 Author Information
 ------------------
 Created in 2020 by [Muhammad Moinur Rahman](https://bofh.am)
-
-
----
