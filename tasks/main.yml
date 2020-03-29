@@ -1,13 +1,16 @@
 ---
 - name: Include OS-specific variables.
   #include_vars: "{{ item }}"
-  include_vars: "{{ lookup('first_found', possible_files) }}"
+  include_vars: "{{lookup('first_found', params)}}"
   #with_first_found:
   vars:
-    possible_files:
-      - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
-      - "{{ ansible_distribution }}.yml"
-      - "{{ ansible_os_family }}.yml"
+    params:
+      files:
+        - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
+        - "{{ ansible_distribution }}.yml"
+        - "{{ ansible_os_family }}.yml"
+      payjs:
+        - 'vars'
         #tags: vars
 
 - name: Update cache and install related packages for Debian based systems
