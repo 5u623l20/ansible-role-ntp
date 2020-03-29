@@ -1,4 +1,8 @@
 # Ansible Role for ntp or time synchronization
+[![GitHub license](https://img.shields.io/github/license/5u623l20/ansible-role-ntp)](https://github.com/5u623l20/ansible-role-ntp/blob/master/LICENSE)
+[![Travis](https://img.shields.io/travis/5u623l20/ansible-role-ntp)](https://travis-ci.org/5u623l20/ansible-role-ntp)
+[![Ansible role](https://img.shields.io/ansible/role/47505)](https://galaxy.ansible.com/5u623l20/ntp)
+[![Ansible Quality](https://img.shields.io/ansible/quality/47505)](https://galaxy.ansible.com/5u623l20/ntp)
 
 Ansible Role for ntp or time synchronization service on *nix alike OS
 
@@ -11,25 +15,19 @@ pip install netaddr
 
 # Role Variables
 
-vailable variables which can be called during runtime are listed below with their default values (see `defaults/main.yml`):
+Available variables which can be called during runtime are listed below with their default values (see `defaults/main.yml`):
 
 ```yaml
 ntp_enabled: true
 ```
 
-Whether to enable ntpd service. It's advisable not to run ntpd service on Kernel based Desktop based virtualization guests, since the host itself should be set to synchronize time for all its child VMs.
+Whether to enable ntpd service. It's advisable not to run ntpd service on Kernel based or Desktop based virtualization guests, since the host itself should be set to synchronize time for all its child VMs.
 
 ```yaml
 ntp_timezone: Etc/UTC
 ```
 
 Configures the timezone of the server.
-
-```yaml
-ntp_package: ntp
-```
-
-Package to provide ntp functionality. Default is set to ntp. For CentOS chrony is used and for FreeBSD default ntpd from base system is used.
 
 ```yaml
 ntp_pools: []
@@ -48,12 +46,6 @@ ntp_restrict: []
 ```
 
 By default only `127.0.0.1` and `::1` is allowed to query the host. If any local network needs to be allowed it should be added in CIDR format(e.g `192.168.0.0/24`).
-
-```yaml
-ntp_tzdata_package: tzdata
-```
-
-Package to provide updated time definitions.
 
 # Dependencies
 
