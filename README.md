@@ -70,4 +70,4 @@ BSD-3-CLAUSE
 
 Author Information
 ------------------
-Created in 2020 by [Muhammad Moinur Rahman](https://bofh.am)
+Created in 2021 by [Muhammad Moinur Rahman](https://bofh.am)

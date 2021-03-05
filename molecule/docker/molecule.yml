@@ -4,28 +4,12 @@ dependency:
 driver:
   name: docker
 platforms:
-  - name: centos7
-    image: centos:7
-    privileged: true
-    volumes:
-      - "/sys/fs/cgroup:/sys/fs/cgroup:rw"
-    command: "/usr/sbin/init"
-    tty: True
-    environment:
-      container: docker
-  - name: centos8
-    image: centos:8
-    privileged: true
-    volumes:
-      - "/sys/fs/cgroup:/sys/fs/cgroup:rw"
-    command: "/usr/sbin/init"
-    tty: True
-    environment:
-      container: docker
   - name: ubuntu16
     image: ubuntu:xenial
   - name: ubuntu18
     image: ubuntu:bionic
+  - name: ubuntu20
+    image: ubuntu:focal
   - name: debian9
     image: debian:9
   - name: debian10

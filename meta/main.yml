@@ -6,10 +6,6 @@ galaxy_info:
   license: license (BSD-3-Clause)
   min_ansible_version: 2.9
   platforms:
-    - name: EL
-      versions:
-        - 7
-        - 8
     - name: Debian
       versions:
         - stretch
@@ -18,10 +14,11 @@ galaxy_info:
       versions:
         - xenial
         - bionic
+        - focal
     - name: FreeBSD
       versions:
-        - 11.3
-        - 12.1
+        - 11.4
+        - 12.2
     - name: HardenedBSD
       versions:
         - all

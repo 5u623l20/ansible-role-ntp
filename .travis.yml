@@ -13,10 +13,9 @@ env:
   matrix:
     - MOLECULE_DISTRO_BOX: generic/ubuntu1604
     - MOLECULE_DISTRO_BOX: generic/ubuntu1804
+    - MOLECULE_DISTRO_BOX: generic/ubuntu2004
     - MOLECULE_DISTRO_BOX: debian/stretch64
     - MOLECULE_DISTRO_BOX: debian/buster64
-    - MOLECULE_DISTRO_BOX: centos/7
-    - MOLECULE_DISTRO_BOX: centos/8
     - MOLECULE_DISTRO_BOX: generic/freebsd11
     - MOLECULE_DISTRO_BOX: generic/freebsd12
 
