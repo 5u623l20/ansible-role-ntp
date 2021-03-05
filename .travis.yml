@@ -9,7 +9,7 @@ services: docker
 env:
   global:
     #- ROLE_NAME: ntp
-    - VAGRANT_VER: 2.2.7
+    - VAGRANT_VER: 2.2.14
   matrix:
     - MOLECULE_DISTRO_BOX: generic/ubuntu1604
     - MOLECULE_DISTRO_BOX: generic/ubuntu1804
