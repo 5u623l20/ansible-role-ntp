@@ -6,11 +6,6 @@ driver:
   name: vagrant
   provider:
     name: virtualbox
-    type: libvirt
-    driver: kvm
-    options:
-      memory: 2048
-      cpus: 2
   # Run vagrant up with --provision.
   # Defaults to --no-provision)
   provision: no
@@ -23,7 +18,7 @@ driver:
   parallel: true
 platforms:
   - name: instance
-    box: ${distro:-""}
+    box: ${MOLECULE_DISTRO}
     interfaces:
       - network_name: public_network
         dev: "virbr0"
@@ -46,5 +41,7 @@ platforms:
 provisioner:
   name: ansible
   log: true
+  playbooks:
+    converge: ${MOLECULE_PLAYBOOK:-converge.yml}
 verifier:
   name: ansible
