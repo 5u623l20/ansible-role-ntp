@@ -43,12 +43,6 @@ platforms:
       synced_folder: true
     memory: 512
     cpus: 1
-    # Dictionary of options passed to the provider
-    provider_options:
-      video_type: 'vga'
-    # List of raw provider options
-    provider_raw_config_args:
-      - cpuset = '1-4,^3,6'
 provisioner:
   name: ansible
   log: true

@@ -41,13 +41,12 @@ jobs:
     strategy:
       matrix:
         distro:
-          - generic/ubuntu1604
           - generic/ubuntu1804
           - generic/ubuntu2004
-          - debian/stretch64
+          - debian/bullseye64
           - debian/buster64
-          - generic/freebsd11
           - generic/freebsd12
+          - generic/freebsd13
     steps:
       - name: Check out the codebase.
         uses: actions/checkout@v2
