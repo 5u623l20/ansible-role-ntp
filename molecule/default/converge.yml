@@ -4,6 +4,6 @@
   become: yes
 
   tasks:
-    - name: "Include ansible-role-ntp"
+    - name: "Include ntp"
       include_role:
-        name: "ansible-role-ntp"
+        name: "5u623l20.ntp"
