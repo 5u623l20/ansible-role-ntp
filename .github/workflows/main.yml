@@ -28,11 +28,11 @@ jobs:
           python-version: '3.x'
 
       - name: Install test dependencies.
-        run: pip3 install ansible-lint yamllint
+        run: pip3 install ansible[lint] yamllint
 
       - name: Lint code(yamllint)
         run: |
-          yamllint .github/workflows/yamllintconfig .
+          yamllint .
 
       - name: Lint code(ansible-lint)
         run: |
