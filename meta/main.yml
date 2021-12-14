@@ -1,6 +1,6 @@
 galaxy_info:
   role_name: ntp
-  author: Muhammad Moinur Rahman
+  author: Moin Rahman
   description: ntp installation and configuration for *nix alike OS.
   company: DZCRD Networks Ltd.
   license: license (BSD-3-Clause)
@@ -9,20 +9,15 @@ galaxy_info:
   platforms:
     - name: Debian
       versions:
-        - stretch
+        - bullseye
         - buster
     - name: Ubuntu
       versions:
-        - xenial
         - bionic
         - focal
     - name: FreeBSD
       versions:
-        - 11.4
-        - 12.2
-    - name: HardenedBSD
-      versions:
-        - all
+        - 12.1
   galaxy_tags:
     - system
     - ntp
