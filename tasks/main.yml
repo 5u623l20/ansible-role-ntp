@@ -44,6 +44,7 @@
   template:
     src: "{{ lookup('first_found', params) }}"
     dest: "/etc/{{ ntp_package }}.conf"
+    mode: 0644
   vars:
     params:
       files:

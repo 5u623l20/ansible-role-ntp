@@ -13,7 +13,6 @@ defaults:
     working-directory: '5u623l20.ntp'
 
 jobs:
-
   lint:
     name: Lint
     runs-on: macos-10.15
@@ -31,9 +30,13 @@ jobs:
       - name: Install test dependencies.
         run: pip3 install yamllint
 
-      - name: Lint code.
+      - name: Lint code(yamllint)
         run: |
-          yamllint .
+          yamllint .github/workflows/yamllintconfig .
+
+      - name: Lint code(ansible-lint)
+        run: |
+          ansible-lint
 
   molecule:
     name: Molecule

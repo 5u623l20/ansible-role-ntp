@@ -1,8 +1,8 @@
 # Ansible Role for ntp or time synchronization
 [![GitHub license](https://img.shields.io/github/license/5u623l20/ansible-role-ntp)](https://github.com/5u623l20/ansible-role-ntp/blob/master/LICENSE)
-[![Travis](https://img.shields.io/travis/5u623l20/ansible-role-ntp)](https://travis-ci.org/5u623l20/ansible-role-ntp)
 [![Ansible role](https://img.shields.io/ansible/role/47505)](https://galaxy.ansible.com/5u623l20/ntp)
 [![Ansible Quality](https://img.shields.io/ansible/quality/47505)](https://galaxy.ansible.com/5u623l20/ntp)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/5u623l20/ansible-role-ntp/CI)
 
 Ansible Role for ntp or time synchronization service on *nix alike OS
 
