@@ -8,6 +8,10 @@ name: CI
   schedule:
     - cron: "30 7 * * 3"
 
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
 defaults:
   run:
     working-directory: '5u623l20.ntp'
@@ -15,7 +19,7 @@ defaults:
 jobs:
   lint:
     name: Lint
-    runs-on: macos-10.15
+    runs-on: ubuntu-20.04
     steps:
       - name: Check out the codebase.
         uses: actions/checkout@v2
@@ -41,15 +45,16 @@ jobs:
   molecule:
     name: Molecule
     runs-on: macos-10.15
+    continue-on-error: true
     strategy:
       matrix:
         distro:
-          - generic/ubuntu1804
-          - generic/ubuntu2004
           - debian/bullseye64
           - debian/buster64
           - generic/freebsd12
           - generic/freebsd13
+          - generic/ubuntu1804
+          - generic/ubuntu2004
     steps:
       - name: Check out the codebase.
         uses: actions/checkout@v2
@@ -63,6 +68,14 @@ jobs:
 
       - name: Install test dependencies.
         run: pip3 install ansible molecule[vagrant] molecule-vagrant
+
+      - name: Cache Vagrant boxes
+        uses: actions/cache@v2
+        with:
+          path: ~/.vagrant.d/boxes
+          key: ${{ runner.os }}-vagrant-${{ matrix.distro }}
+          restore-keys: |
+            ${{ runner.os }}-vagrant-${{ matrix.distro }}
 
       - name: Run Molecule tests.
         run: molecule test
