@@ -1,7 +1,7 @@
 ---
 - name: Include OS-specific variables.
   #include_vars: "{{ item }}"
-  include_vars: "{{ lookup('first_found', params) }}"
+  ansible.builtin.include_vars: "{{ lookup('first_found', params) }}"
   #with_first_found:
   vars:
     params:
@@ -14,7 +14,7 @@
         #tags: vars
 
 - name: Update cache and install related packages for Debian based systems
-  apt:
+  ansible.builtin.apt:
     name:
       - "{{ ntp_package }}"
       - "{{ ntp_tzdata_package }}"
@@ -27,21 +27,21 @@
     name: "{{ ntp_timezone }}"
 
 - name: Ensure NTP is running and enabled as configured.
-  service:
+  ansible.builtin.service:
     name: "{{ ntp_daemon }}"
     state: started
     enabled: true
   when: ntp_enabled | bool
 
 - name: Ensure NTP is stopped and disabled as configured.
-  service:
+  ansible.builtin.service:
     name: "{{ ntp_daemon }}"
     state: stopped
     enabled: false
   when: not (ntp_enabled | bool)
 
 - name: Generate configuration file
-  template:
+  ansible.builtin.template:
     src: "{{ lookup('first_found', params) }}"
     dest: "/etc/{{ ntp_package }}.conf"
     mode: 0644
