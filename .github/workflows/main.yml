@@ -40,11 +40,11 @@ jobs:
 
       - name: Lint code(ansible-lint)
         run: |
-          ansible-lint
+          ansible-lint .
 
   molecule:
     name: Molecule
-    runs-on: macos-10.15
+    runs-on: macos-11
     continue-on-error: true
     strategy:
       matrix:
