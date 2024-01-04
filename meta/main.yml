@@ -4,8 +4,8 @@ galaxy_info:
   description: ntp installation and configuration for *nix alike OS.
   company: DZCRD Networks Ltd.
   license: license (BSD-3-Clause)
-  min_ansible_version: 2.9
-  namespace: 5u623l20
+  min_ansible_version: '2.9'
+    #namespace: '5u623l20'
   platforms:
     - name: Debian
       versions:
@@ -17,7 +17,7 @@ galaxy_info:
         - focal
     - name: FreeBSD
       versions:
-        - 12.1
+        - '13.2'
   galaxy_tags:
     - system
     - ntp
