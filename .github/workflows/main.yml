@@ -40,7 +40,7 @@ jobs:
 
   molecule:
     name: Molecule
-    runs-on: macos-11
+    runs-on: macos-12
     continue-on-error: true
     strategy:
       matrix:
