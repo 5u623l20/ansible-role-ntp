@@ -32,7 +32,7 @@ jobs:
           python-version: '3.x'
 
       - name: Install test dependencies.
-        run: pip3 install ansible ansible-lint yamllint
+        run: pip3 install ansible ansible-lint yamllint ansible-base
 
       - name: Lint code(yamllint)
         run: |
