@@ -51,8 +51,8 @@ jobs:
         distro:
           - debian/bullseye64
           - debian/buster64
-          - generic/freebsd12
           - generic/freebsd13
+          - generic/freebsd14
           - generic/ubuntu1804
           - generic/ubuntu2004
     steps:
