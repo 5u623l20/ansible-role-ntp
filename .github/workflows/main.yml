@@ -63,7 +63,7 @@ jobs:
           python-version: '3.x'
 
       - name: Install test dependencies.
-        run: pip3 install ansible molecule[vagrant] molecule-vagrant ansible-base
+        run: pip3 install ansible molecule-plugins[vagrant] molecule-plugins ansible-base
 
       - name: Cache Vagrant boxes
         uses: actions/cache@v2
