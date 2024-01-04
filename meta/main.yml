@@ -1,11 +1,12 @@
+---
 galaxy_info:
   role_name: ntp
   author: Moin Rahman
   description: ntp installation and configuration for *nix alike OS.
-  company: DZCRD Networks Ltd.
+  company: Cybermancer Infosec
   license: license (BSD-3-Clause)
-  min_ansible_version: '2.9'
-  namespace: 5u623l20
+  min_ansible_version: 2.9
+  namespace: cybermanceris
   platforms:
     - name: Debian
       versions:
@@ -17,7 +18,7 @@ galaxy_info:
         - focal
     - name: FreeBSD
       versions:
-        - '13.2'
+        - 13.2
   galaxy_tags:
     - system
     - ntp
