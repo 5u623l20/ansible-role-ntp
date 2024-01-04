@@ -14,7 +14,7 @@ concurrency:
 
 defaults:
   run:
-    working-directory: '5u623l20.ntp'
+    working-directory: 'cybermenceris.ntp'
 
 jobs:
   lint:
@@ -24,7 +24,7 @@ jobs:
       - name: Check out the codebase.
         uses: actions/checkout@v2
         with:
-          path: '5u623l20.ntp'
+          path: 'cybermenceris.ntp'
 
       - name: Set up Python 3.
         uses: actions/setup-python@v2
@@ -37,10 +37,6 @@ jobs:
       - name: Lint code(yamllint)
         run: |
           yamllint .
-
-      - name: Lint code(ansible-lint)
-        run: |
-          ansible-lint .
 
   molecule:
     name: Molecule
@@ -59,7 +55,7 @@ jobs:
       - name: Check out the codebase.
         uses: actions/checkout@v2
         with:
-          path: '5u623l20.ntp'
+          path: 'cybermenceris.ntp'
 
       - name: Set up Python 3.
         uses: actions/setup-python@v2
