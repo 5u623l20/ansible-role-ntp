@@ -14,17 +14,17 @@ concurrency:
 
 defaults:
   run:
-    working-directory: 'cybermenceris.ntp'
+    working-directory: '5u623l20.ntp'
 
 jobs:
   lint:
     name: Lint
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: Check out the codebase.
         uses: actions/checkout@v2
         with:
-          path: 'cybermenceris.ntp'
+          path: '5u623l20.ntp'
 
       - name: Set up Python 3.
         uses: actions/setup-python@v5
@@ -32,9 +32,9 @@ jobs:
           python-version: '3.11'
 
       - name: Install test dependencies.
-        run: pip3 install ansible ansible-lint yamllint ansible-base
+        run: pip3 install yamllint
 
-      - name: Lint code(yamllint)
+      - name: Lint code
         run: |
           yamllint .
 
@@ -55,15 +55,15 @@ jobs:
       - name: Check out the codebase.
         uses: actions/checkout@v2
         with:
-          path: 'cybermenceris.ntp'
+          path: '5u623l20.ntp'
 
       - name: Set up Python 3.
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: '3.x'
 
       - name: Install test dependencies.
-        run: pip3 install ansible molecule-plugins[vagrant] molecule-plugins ansible-base
+        run: pip3 install ansible molecule-plugins[vagrant]
 
       - name: Cache Vagrant boxes
         uses: actions/cache@v2
