@@ -124,7 +124,7 @@ restrict source  limited kod nomodify notrap noquery
 restrict 127.0.0.1
 restrict ::1
 {% for item in ntp_restrict %}
-restrict {{ item | ipaddr('address') }} mask {{ item | ipaddr('netmask') }}
+restrict {{ item | ansible.utils.ipaddr('address') }} mask {{ item | ansible.utils.ipaddr('netmask') }}
 {% endfor %}
 #
 # If a server loses sync with all upstream servers, NTP clients
