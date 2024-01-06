@@ -1,0 +1,13 @@
+---
+- name: Make sure ntp and chrony is not in conflict in CentOS like systems
+  ansible.builtin.yum:
+    name:
+      - ntp
+    state: absent
+
+- name: Update cache and install related packages for CentOS based systems
+  ansible.builtin.yum:
+    name:
+      - "{{ ntp_package }}"
+      - "{{ ntp_tzdata_package }}"
+    state: present

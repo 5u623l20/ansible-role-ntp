@@ -21,21 +21,6 @@
       - "{{ ansible_os_family }}.yml"
       skip: true
 
-- name: Make sure ntp and chrony is not in conflict in CentOS like systems
-  ansible.builtin.yum:
-    name:
-      - ntp
-    state: absent
-  when: ansible_os_family == "RedHat"
-
-- name: Update cache and install related packages for CentOS based systems
-  ansible.builtin.yum:
-    name:
-      - "{{ ntp_package }}"
-      - "{{ ntp_tzdata_package }}"
-    state: present
-  when: ansible_os_family == "RedHat"
-
 - name: Set timezone in Linux like OS
   community.general.timezone:
     name: "{{ ntp_timezone }}"

@@ -41,7 +41,7 @@ jobs:
     timeout-minutes: 10
     continue-on-error: true
     strategy:
-      max-parallel: 4
+      max-parallel: 3
       matrix:
         distro:
           - almalinux/8
