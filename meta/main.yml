@@ -10,15 +10,16 @@ galaxy_info:
   platforms:
     - name: Debian
       versions:
-        - bullseye
+        - bookworm
         - buster
     - name: Ubuntu
       versions:
-        - bionic
+        - jammy
         - focal
     - name: FreeBSD
       versions:
         - 13.2
+        - 14.0
   galaxy_tags:
     - system
     - ntp

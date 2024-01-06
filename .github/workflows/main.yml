@@ -22,18 +22,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the codebase.
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           path: '5u623l20.ntp'
-
       - name: Set up Python 3.
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-
       - name: Install test dependencies.
         run: pip3 install yamllint
-
       - name: Lint code
         run: |
           yamllint .
@@ -51,22 +48,21 @@ jobs:
           - generic/freebsd14
           - generic/ubuntu2004
           - generic/ubuntu2204
+          - ubuntu/focal64
+          - ubuntu/jammy64
     steps:
       - name: Check out the codebase.
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           path: '5u623l20.ntp'
-
       - name: Set up Python 3.
         uses: actions/setup-python@v5
         with:
           python-version: '3.x'
-
       - name: Install test dependencies.
         run: pip3 install ansible molecule-plugins[vagrant]
-
       - name: Cache Vagrant boxes
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/.vagrant.d/boxes
           key: ${{ runner.os }}-vagrant-${{ matrix.distro }}
