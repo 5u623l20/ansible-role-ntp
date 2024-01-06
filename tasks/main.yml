@@ -37,7 +37,7 @@
   community.general.sysrc:
     name: ntpd_sync_on_start
     value: "YES"
-  when: ansible_distribution == "FreeBSD"
+  when: ansible_os_family == "FreeBSD"
 
 - name: Ensure NTP is stopped and disabled as configured.
   ansible.builtin.service:
