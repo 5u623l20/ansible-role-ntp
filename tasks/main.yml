@@ -12,7 +12,6 @@
         - 'vars'
 
 - name: Include OS-specific tasks
-  debugger: on_failed
   ansible.builtin.include_tasks:
     file: "{{ item }}"
   with_first_found:
@@ -20,6 +19,7 @@
       - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
       - "{{ ansible_distribution }}.yml"
       - "{{ ansible_os_family }}.yml"
+      skip: true
 
 - name: Update cache and install related packages for Debian based systems
   ansible.builtin.apt:
