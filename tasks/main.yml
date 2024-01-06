@@ -1,15 +1,36 @@
 ---
 - name: Include OS-specific variables.
-  ansible.builtin.include_vars: "{{ lookup('first_found', params) }}"
+  ansible.builtin.include_vars: "{{ lookup('ansible.builtin.first_found', params) }}"
   vars:
     params:
       files:
         - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
         - "{{ ansible_distribution }}.yml"
         - "{{ ansible_os_family }}.yml"
+      skip: true
       paths:
         - 'vars'
-        #tags: vars
+
+- name: Include OS-specific tasks.
+  ansible.builtin.include_tasks: "{{ lookup('ansible.builtin.first_found', params) }}"
+  vars:
+    params:
+      files:
+        - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
+        - "{{ ansible_distribution }}.yml"
+        - "{{ ansible_os_family }}.yml"
+      skip: true
+      paths:
+        - 'tasks'
+
+- name: Update cache and install related packages for Alpine based systems
+  ansible.builtin.apk:
+    name:
+      - "{{ ntp_package }}"
+      - "{{ ntp_tzdata_package }}"
+    update_cache: yes
+    state: present
+  when: ansible_os_family == "Alpine"
 
 - name: Update cache and install related packages for Debian based systems
   ansible.builtin.apt:
