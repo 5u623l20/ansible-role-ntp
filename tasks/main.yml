@@ -1,8 +1,6 @@
 ---
 - name: Include OS-specific variables.
-  #include_vars: "{{ item }}"
   ansible.builtin.include_vars: "{{ lookup('first_found', params) }}"
-  #with_first_found:
   vars:
     params:
       files:
@@ -21,6 +19,21 @@
     update_cache: yes
     state: present
   when: ansible_os_family == "Debian"
+
+- name: Make sure ntp and chrony is not in conflict in CentOS like systems
+  yum:
+    name:
+      - ntp
+    state: absent
+  when: ansible_os_family == "RedHat"
+
+- name: Update cache and install related packages for CentOS based systems
+  yum:
+    name:
+      - "{{ ntp_package }}"
+      - "{{ ntp_tzdata_package }}"
+    state: present
+  when: ansible_os_family == "RedHat"
 
 - name: Set timezone in Linux like OS
   community.general.timezone:

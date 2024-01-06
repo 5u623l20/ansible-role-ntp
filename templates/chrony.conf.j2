@@ -1,0 +1,63 @@
+{{ ansible_managed | comment }}
+
+#
+# The following pool statement will give you a random set of NTP servers
+# geographically close to you.  A single pool statement adds multiple
+# servers from the pool, according to the tos minclock/maxclock targets.
+# See http://www.pool.ntp.org/ for details.  Note, pool.ntp.org encourages
+# users with a static IP and good upstream NTP servers to add a server
+# to the pool. See http://www.pool.ntp.org/join.html if you are interested.
+#
+# The option `iburst' is used for faster initial synchronization.
+#
+{% if ntp_pools|length %}
+{% for item in ntp_pools %}
+pool {{ item }} iburst
+{% endfor %}
+{% elif ntp_servers|length %}
+{% for item in ntp_servers %}
+server {{ item }} iburst
+{% endfor %}
+{% else %}
+pool 0.centos.pool.ntp.org iburst
+pool 1.centos.pool.ntp.org iburst
+pool 2.centos.pool.ntp.org iburst
+pool 3.centos.pool.ntp.org iburst
+{% endif %}
+
+# Record the rate at which the system clock gains/losses time.
+driftfile {{ drift_file }}
+
+# Allow the system clock to be stepped in the first three updates
+# if its offset is larger than 1 second.
+makestep 1.0 3
+
+# Enable kernel synchronization of the real-time clock (RTC).
+rtcsync
+
+# Enable hardware timestamping on all interfaces that support it.
+#hwtimestamp *
+
+# Increase the minimum number of selectable sources required to adjust
+# the system clock.
+#minsources 2
+
+# Allow NTP client access from local network.
+{% for item in ntp_restrict %}
+allow {{ item }}
+{% endfor %}
+
+# Serve time even if not synchronized to a time source.
+#local stratum 10
+
+# Specify file containing keys for NTP authentication.
+keyfile /etc/chrony.keys
+
+# Get TAI-UTC offset and leap seconds from the system tz database.
+leapsectz right/UTC
+
+# Specify directory for log files.
+logdir /var/log/chrony
+
+# Select which information is logged.
+#log measurements statistics tracking
