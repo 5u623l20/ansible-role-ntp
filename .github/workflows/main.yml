@@ -44,12 +44,12 @@ jobs:
       max-parallel: 2
       matrix:
         distro:
+          - freebsd/FreeBSD-13.2-RELEASE
+          - generic/freebsd13
           - almalinux/8
           - debian/bullseye64
           - generic/alpine319
-          - generic/freebsd13
           - ubuntu/focal64
-          - ubuntu/jammy64
     steps:
       - name: Check out the codebase.
         uses: actions/checkout@v4
