@@ -24,7 +24,7 @@ jobs:
       - name: Set up Python 3.
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: '3.x'
       - name: Install test dependencies.
         run: pip3 install yamllint
       - name: Lint code
@@ -43,7 +43,6 @@ jobs:
           - generic/freebsd13
           - generic/freebsd14
           - generic/ubuntu2004
-          - generic/ubuntu2204
           - ubuntu/focal64
           - ubuntu/jammy64
     steps:
