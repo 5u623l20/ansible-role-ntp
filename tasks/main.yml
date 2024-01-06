@@ -1,5 +1,5 @@
 ---
-- name: Include OS-specific variables.
+- name: Include OS-specific variables
   ansible.builtin.include_vars: "{{ lookup('ansible.builtin.first_found', params) }}"
   vars:
     params:
@@ -11,7 +11,7 @@
       paths:
         - 'vars'
 
-- name: Include OS-specific tasks.
+- name: Include OS-specific tasks
   ansible.builtin.include_tasks:
     file: "{{ item }}"
   with_first_found:
@@ -20,15 +20,6 @@
       - tasks/"{{ ansible_distribution }}.yml"
       - tasks/"{{ ansible_os_family }}.yml"
       skip: true
-
-- name: Update cache and install related packages for Alpine based systems
-  community.general.apk:
-    name:
-      - "{{ ntp_package }}"
-      - "{{ ntp_tzdata_package }}"
-    update_cache: yes
-    state: present
-  when: ansible_os_family == "Alpine"
 
 - name: Update cache and install related packages for Debian based systems
   ansible.builtin.apt:
@@ -58,7 +49,7 @@
   community.general.timezone:
     name: "{{ ntp_timezone }}"
 
-- name: Ensure NTP is running and enabled as configured.
+- name: Ensure NTP is running and enabled as configured
   ansible.builtin.service:
     name: "{{ ntp_daemon }}"
     state: started
@@ -71,7 +62,7 @@
     value: "YES"
   when: ansible_os_family == "FreeBSD"
 
-- name: Ensure NTP is stopped and disabled as configured.
+- name: Ensure NTP is stopped and disabled as configured
   ansible.builtin.service:
     name: "{{ ntp_daemon }}"
     state: stopped

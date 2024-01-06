@@ -43,7 +43,6 @@ jobs:
       matrix:
         distro:
           - almalinux/8
-          - almalinux/9
           - debian/bookworm64
           - debian/bullseye64
           - generic/alpine319

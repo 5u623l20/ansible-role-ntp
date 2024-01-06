@@ -1,0 +1,8 @@
+---
+- name: Update cache and install related packages for Alpine based systems
+  community.general.apk:
+    name:
+      - "{{ ntp_package }}"
+      - "{{ ntp_tzdata_package }}"
+    update_cache: yes
+    state: present
