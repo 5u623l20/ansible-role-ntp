@@ -12,6 +12,7 @@
         - 'vars'
 
 - name: Include OS-specific tasks
+  debugger: on_skipped
   ansible.builtin.include_tasks:
     file: "{{ item }}"
   with_first_found:
