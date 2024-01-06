@@ -47,12 +47,6 @@
     enabled: true
   when: ntp_enabled | bool
 
-- name: Ensure NTP sync on start is enabled for FreeBSD
-  community.general.sysrc:
-    name: ntpd_sync_on_start
-    value: "YES"
-  when: ansible_os_family == "FreeBSD"
-
 - name: Ensure NTP is stopped and disabled as configured
   ansible.builtin.service:
     name: "{{ ntp_daemon }}"

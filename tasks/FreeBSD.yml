@@ -1,0 +1,6 @@
+---
+- name: Ensure NTP sync on start is enabled for FreeBSD
+  community.general.sysrc:
+    name: ntpd_sync_on_start
+    value: "YES"
+  when: ansible_os_family == "FreeBSD"
