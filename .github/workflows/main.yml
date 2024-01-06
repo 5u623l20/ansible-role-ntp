@@ -41,11 +41,10 @@ jobs:
     timeout-minutes: 10
     continue-on-error: true
     strategy:
-      max-parallel: 1
+      max-parallel: 2
       matrix:
         distro:
           - almalinux/8
-          - almalinux/9
           - debian/bookworm64
           - debian/bullseye64
           - generic/alpine319
