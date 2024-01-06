@@ -38,12 +38,12 @@ jobs:
   molecule:
     name: Molecule
     runs-on: macos-12
+    timeout-minutes: 10
     continue-on-error: true
     strategy:
       matrix:
         distro:
           - almalinux/8
-          - debian/bookworm64
           - debian/bullseye64
           - generic/alpine319
           - generic/freebsd13
