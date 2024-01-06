@@ -12,19 +12,17 @@
         - 'vars'
 
 - name: Include OS-specific tasks.
-  ansible.builtin.include_tasks: "{{ lookup('ansible.builtin.first_found', params) }}"
-  vars:
-    params:
-      files:
-        - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
-        - "{{ ansible_distribution }}.yml"
-        - "{{ ansible_os_family }}.yml"
+  ansible.builtin.include_tasks:
+    file: "{{ item }}"
+  with_first_found:
+    - files:
+      - tasks/"{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
+      - tasks/"{{ ansible_distribution }}.yml"
+      - tasks/"{{ ansible_os_family }}.yml"
       skip: true
-      paths:
-        - 'tasks'
 
 - name: Update cache and install related packages for Alpine based systems
-  ansible.builtin.apk:
+  community.general.apk:
     name:
       - "{{ ntp_package }}"
       - "{{ ntp_tzdata_package }}"
@@ -42,14 +40,14 @@
   when: ansible_os_family == "Debian"
 
 - name: Make sure ntp and chrony is not in conflict in CentOS like systems
-  yum:
+  ansible.builtin.yum:
     name:
       - ntp
     state: absent
   when: ansible_os_family == "RedHat"
 
 - name: Update cache and install related packages for CentOS based systems
-  yum:
+  ansible.builtin.yum:
     name:
       - "{{ ntp_package }}"
       - "{{ ntp_tzdata_package }}"
@@ -95,4 +93,4 @@
       paths:
         - 'templates'
   tags: template-ntp-config
-  notify: restart ntp
+  notify: Restart ntp
