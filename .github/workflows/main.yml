@@ -44,7 +44,6 @@ jobs:
       max-parallel: 2
       matrix:
         distro:
-          - freebsd/FreeBSD-13.2-RELEASE
           - generic/freebsd13
           - almalinux/8
           - debian/bullseye64
