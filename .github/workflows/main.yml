@@ -38,16 +38,16 @@ jobs:
   molecule:
     name: Molecule
     runs-on: macos-12
-    timeout-minutes: 10
+    timeout-minutes: 12
     continue-on-error: true
     strategy:
       max-parallel: 2
       matrix:
         distro:
           - generic/freebsd13
+          - generic/alpine319
           - almalinux/8
           - debian/bullseye64
-          - generic/alpine319
           - ubuntu/focal64
     steps:
       - name: Check out the codebase.
