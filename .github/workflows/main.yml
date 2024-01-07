@@ -44,11 +44,11 @@ jobs:
       max-parallel: 1
       matrix:
         distro:
-          - generic/freebsd13
-          - generic/alpine319
           - almalinux/8
+          - generic/alpine319
           - debian/bullseye64
           - ubuntu/focal64
+          - generic/freebsd13
     steps:
       - name: Check out the codebase.
         uses: actions/checkout@v4
