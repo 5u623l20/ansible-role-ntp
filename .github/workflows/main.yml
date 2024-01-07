@@ -41,14 +41,13 @@ jobs:
     timeout-minutes: 12
     continue-on-error: true
     strategy:
-      max-parallel: 1
       matrix:
         distro:
           - almalinux/8
           - generic/alpine319
+          - generic/freebsd13
           - debian/bullseye64
           - ubuntu/focal64
-          - generic/freebsd13
     steps:
       - name: Check out the codebase.
         uses: actions/checkout@v4
