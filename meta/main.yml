@@ -17,7 +17,7 @@ galaxy_info:
     - name: Debian
       versions:
         - bookworm
-        - buster
+        - bullseye
     - name: FreeBSD
       versions:
         - 13.2
